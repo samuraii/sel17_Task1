@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.WeakHashMap;
 
 public class AlphabetSort extends Login {
 
@@ -18,31 +17,11 @@ public class AlphabetSort extends Login {
         Assert.assertEquals(before_sort, list);
     }
 
-    public void SwitchToTab(int n) {
-        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(n));
-    }
-
-    public void CloseTab() {
-        JavascriptExecutor js;
-        js = (JavascriptExecutor) driver;
-        js.executeScript("window.close()");
-    }
-
-    public void openNewTab(String url) {
-        JavascriptExecutor js;
-        js = (JavascriptExecutor) driver;
-        js.executeScript("window.open()");
-        SwitchToTab(1);
-        driver.get(url);
-    }
-
     public String GetSelectValuse(WebElement sel) {
         Select select = new Select(sel);
         WebElement option = select.getFirstSelectedOption();
         return option.getText();
     }
-
 
     @Test
     public void AlphabetSortedCountries() {
@@ -59,7 +38,7 @@ public class AlphabetSort extends Login {
 
             if (c_time_zones > 0) {
                 String href = line_data.get(4).findElement(By.tagName("a")).getAttribute("href");
-                openNewTab(href);
+                OpenNewTab(href);
 
                 ArrayList<String> t_zone_names = new ArrayList<>();
                 List<WebElement> t_zones = driver.findElements(By.cssSelector("#table-zones tr"));
@@ -67,16 +46,13 @@ public class AlphabetSort extends Login {
                     String t_zone_name = t_zones.get(2).getText();
                     t_zone_names.add(t_zone_name);
                 }
-
                 CheckAlphSort(t_zone_names);
                 CloseTab();
                 SwitchToTab(0);
 
             }
-
             c_names.add(c_name);
         }
-
         CheckAlphSort(c_names);
     }
 
@@ -95,7 +71,7 @@ public class AlphabetSort extends Login {
 
             if (num_zones > 0) {
                 String href = line_data.get(2).findElement(By.tagName("a")).getAttribute("href");
-                openNewTab(href);
+                OpenNewTab(href);
 
                 List<WebElement> rows = driver.findElements(By.cssSelector(".dataTable tr:not(.header)"));
 
@@ -106,10 +82,8 @@ public class AlphabetSort extends Login {
                         continue;
                     }
                     String name = GetSelectValuse(row_items.get(2).findElement(By.tagName("select")));
-                    System.out.println(name);
                     zone_names.add(name);
                 }
-
                 CheckAlphSort(zone_names);
                 CloseTab();
                 SwitchToTab(0);
