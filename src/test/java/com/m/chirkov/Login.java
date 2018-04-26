@@ -23,6 +23,7 @@ public class Login {
         System.setProperty("webdriver.chrome.driver", "C:\\bins\\selenium\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+
         driver.get("http://localhost/shop");
     }
 
