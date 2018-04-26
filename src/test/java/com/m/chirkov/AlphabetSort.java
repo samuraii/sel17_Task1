@@ -29,7 +29,7 @@ public class AlphabetSort extends Login {
 
         driver.get("http://localhost/shop/admin/?app=countries&doc=countries");
         List<WebElement> c_lines = driver.findElements(By.cssSelector("form[name=\"countries_form\"] .dataTable tr.row"));
-        ArrayList<String> c_names = new ArrayList<>();
+        ArrayList<String> c_names = new ArrayList<String>();
 
         for (WebElement line : c_lines) {
             List<WebElement> line_data = line.findElements(By.tagName("td"));
@@ -40,7 +40,7 @@ public class AlphabetSort extends Login {
                 String href = line_data.get(4).findElement(By.tagName("a")).getAttribute("href");
                 OpenNewTab(href);
 
-                ArrayList<String> t_zone_names = new ArrayList<>();
+                ArrayList<String> t_zone_names = new ArrayList<String>();
                 List<WebElement> t_zones = driver.findElements(By.cssSelector("#table-zones tr"));
                 for (int i = 0; i < t_zones.size(); i++) {
                     String t_zone_name = t_zones.get(2).getText();
@@ -62,7 +62,7 @@ public class AlphabetSort extends Login {
 
         driver.get("http://localhost/shop/admin/?app=geo_zones&doc=geo_zones");
         List<WebElement> c_lines = driver.findElements(By.cssSelector(".dataTable tr.row"));
-        ArrayList<String> c_names = new ArrayList<>();
+        ArrayList<String> c_names = new ArrayList<String>();
 
         for (WebElement line : c_lines) {
             List<WebElement> line_data = line.findElements(By.tagName("td"));
@@ -75,7 +75,7 @@ public class AlphabetSort extends Login {
 
                 List<WebElement> rows = driver.findElements(By.cssSelector(".dataTable tr:not(.header)"));
 
-                ArrayList<String> zone_names = new ArrayList<>();
+                ArrayList<String> zone_names = new ArrayList<String>();
                 for (WebElement row : rows) {
                     List<WebElement> row_items = row.findElements(By.tagName("td"));
                     if (row_items.size() < 4) {
