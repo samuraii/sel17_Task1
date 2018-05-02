@@ -54,6 +54,7 @@ public class AlphabetSort extends Login {
             c_names.add(c_name);
         }
         CheckAlphSort(c_names);
+        logoutAdmin();
     }
 
     @Test

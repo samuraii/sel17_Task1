@@ -22,6 +22,12 @@ public class RegisterNewUser extends Login {
         return "+" + String.valueOf(randomNum);
     }
 
+    protected String RandId() {
+        Random rand = new Random();
+        int randomNum = rand.nextInt((999999 - 1) + 1) + 1;
+        return String.valueOf(randomNum);
+    }
+
     @Test
     public void RegisterNew() {
         WebElement login_form = driver.findElement(By.id("box-account-login"));
@@ -33,6 +39,7 @@ public class RegisterNewUser extends Login {
         customer_form.findElement(By.name("lastname")).sendKeys("testlastname");
         customer_form.findElement(By.name("address1")).sendKeys("testaddress");
         customer_form.findElement(By.name("city")).sendKeys("testcity");
+        customer_form.findElement(By.name("postcode")).sendKeys(RandId());
         String email = RandMail(999999, 1);
         System.out.println("User email " + email);
         customer_form.findElement(By.name("email")).sendKeys(email);

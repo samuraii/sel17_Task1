@@ -17,7 +17,7 @@ public class Login {
 
     protected static WebDriver driver;
 
-    protected static String host = "http://localhost/";
+    protected static String host = "http://localhost:8888/litecart";
 
     @BeforeClass
     public static void setup() {
@@ -38,6 +38,12 @@ public class Login {
         loginButton.click();
         WebDriverWait wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#box-apps-menu")));
+    }
+
+    protected static void logoutAdmin() {
+        driver.get(host + "admin");
+        WebElement lgout = driver.findElement(By.cssSelector("a[title=\"Logout\"]"));
+        lgout.click();
     }
 
     public void SwitchToTab(int n) {
