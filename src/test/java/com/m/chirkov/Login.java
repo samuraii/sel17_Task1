@@ -26,10 +26,11 @@ public class Login {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(host);
+        WebDriverWait wait = new WebDriverWait(driver, 3);
     }
 
     protected static void loginAsAdmin() {
-        driver.get(host + "admin");
+        driver.get(host + "/admin");
         WebElement loginField = driver.findElement(By.name("username"));
         loginField.sendKeys("admin");
         WebElement passwordField = driver.findElement(By.name("password"));
