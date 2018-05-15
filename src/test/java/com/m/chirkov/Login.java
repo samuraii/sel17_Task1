@@ -17,12 +17,10 @@ public class Login {
 
     protected static WebDriver driver;
 
-    protected static String host = "http://localhost:8888/litecart";
+    protected static String host = "http://localhost/shop";
 
     @BeforeClass
     public static void setup() {
-        // For Windows
-        // System.setProperty("webdriver.chrome.driver", "C:\\bins\\selenium\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(host);
